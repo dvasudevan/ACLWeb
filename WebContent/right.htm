@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Search Results</title>
+		<link type="text/css" href="css/cupertino/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
+		<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+
+				// Accordion
+				$("#accordion").accordion({ header: "h3" });
+			});				
+			
+		</script>
+		<style type="text/css">
+			/*demo page css*/
+			body{ font: 62.5% "Trebuchet MS", sans-serif; background-color: #e4f1fb;}
+			.demoHeaders { margin-top: 2em; }
+			#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+			ul#icons {margin: 0; padding: 0;}
+			ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+			ul#icons span.ui-icon {float: left; margin: 0 4px;}
+		</style>		
+</head>
+<body >
+<script>
+function helloWorld()
+{
+	alert("hello world");
+}
+</script>
+<table id="tb_doclist" border="1" >
+<tr border="1">
+<td width="30%" ><input type="checkbox" id="selectall"/>Select All</td>
+<th>Name</th>
+</tr>	
+<!-- 
+<tr>
+<td ><input type="checkbox" id="docs"/>Document 1</td>
+<td>jane.doe@gene.com</td>
+</tr>	
+<tr>
+<td ><input type="checkbox" id="docs"/>Document 2</td>
+<td>joe.doe@gene.com</td>
+</tr>	
+<tr>
+<td ><input type="checkbox" id="docs"/>Document 3</td>
+<td>msmith@gene.com</td>
+</tr>
+ -->	
+</table>
+</body>
+</html>

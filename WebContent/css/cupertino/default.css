@@ -1,0 +1,208 @@
+body {
+	margin:0;
+	padding:0;
+	border:0;			/* This removes the border around the viewport in old versions of IE */
+	width:100%;
+	background-color: #e4f1fb;
+					    /* The min-width property does not work in old versions of Internet Explorer */
+	font-size:75%;
+}
+a {
+	color:#369;
+}
+a:hover {
+	text-decoration:none;
+}
+h1, h2, h3 {
+	margin:.8em 0 .2em 0;
+	padding:0;
+}
+p {
+	margin:.4em 0 .8em 0;
+	padding:0;
+}
+img {
+	margin:10px 0 5px;
+}
+#ads img {
+	display:block;
+	padding-top:10px;
+}
+
+/* Header styles */
+#header {
+	clear:both;
+	float:left;
+	width:100%;
+}
+#header {
+	border-bottom:1px solid #000;
+}
+#header p,
+#header h1,
+#header h2 {
+	padding:.4em 15px 0 15px;
+	margin:0;
+}
+#header ul {
+	clear:left;
+	float:left;
+	width:100%;
+	list-style:none;
+	margin:10px 0 0 0;
+	padding:0;
+}
+#header ul li {
+	display:inline;
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+#header ul li a {
+	display:block;
+	float:left;
+	margin:0 0 0 1px;
+	padding:3px 10px;
+	text-align:center;
+	background:#eee;
+	color:#000;
+	text-decoration:none;
+	position:relative;
+	left:15px;
+	line-height:1.3em;
+}
+#header ul li a:hover {
+	color:#fff;
+}
+#header ul li a.active,
+#header ul li a.active:hover {
+	color:#fff;
+	font-weight:bold;
+}
+#header ul li a span {
+	display:block;
+}
+/* 'widths' sub menu */
+#layoutdims {
+	clear:both;
+	background:#eee;
+	border-top:4px solid #000;
+	margin:0;
+	padding:6px 15px !important;
+	text-align:right;
+}
+/* column container */
+.colmask {
+	position:relative;	/* This fixes the IE7 overflow hidden bug */
+	clear:both;
+	float:left;
+	width:100%;			/* width of whole page */
+	min-width:1078px;
+	overflow:hidden;		/* This chops off any overhanging divs */
+}
+
+.col1,
+.col2,
+.col3 {
+	float:left;
+	position:relative;
+	margin-right: 3px;
+	padding:0 2px 1em 0;	/* no left and right padding on columns, we just make them narrower instead 
+					only padding top and bottom is included here, make it whatever value you need */
+  overflow:hidden;
+}
+/* 3 Column settings */
+.threecol {
+}
+.threecol .col1 {
+	width:100%;			/* width of center column content (column width minus padding on either side) */
+}
+.threecol .col2 {
+	width:400px;			/* Width of left column content (column width minus padding on either side) */
+} 
+  
+  .block { 
+    color: white;
+    background-color: #68BFEF;
+    width: 150px; 
+    height: 70px;
+    margin: 10px; 
+  }
+    #leftPanel
+    {
+        width: 52%;
+        margin-bottom: 0px;
+    }
+    #centerPanel
+    {
+        margin-left: 485px;
+    }
+
+/* div container containing the form  */
+#searchContainer {
+    margin:20px;
+}
+ 
+/* Style the search input field. */
+#user {
+    float:left; 
+    width:200px; 
+    height:27px; 
+    line-height:27px;
+    text-indent:10px; 
+    font-family:arial, sans-serif; 
+    font-size:1em; 
+    color:#333; 
+    background: #fff; 
+    border:solid 1px #d9d9d9;  
+    border-top:solid 1px #c0c0c0; 
+    border-right:none;
+}
+
+ 
+/* Style the "X" text button next to the search input user */
+#delete {
+    float:left; 
+    width:16px;
+    height:29px; 
+    line-height:27px; 
+    margin-right:15px; 
+    padding:0 10px 0 10px;
+    font-family: "Lucida Sans", "Lucida Sans Unicode",sans-serif;
+    font-size:22px; 
+    background: #fff;  
+    border:solid 1px #d9d9d9; 
+    border-top:solid 1px #c0c0c0; 
+    border-left:none;
+}
+/* Set default state of "X" and hide it */
+#delete #x {
+    color:#A1B9ED; 
+    cursor:pointer;
+    display:none;
+}
+/* Set the hover state of "X" */
+#delete #x:hover {
+    color:#36c;
+}
+/* Syle the search button. Settings of line-height, font-size, text-indent used to hide submit value in IE */
+#submit {
+    cursor:pointer; 
+    width:70px; 
+    height: 31px; 
+    line-height:0; 
+    font-size:0; 
+    text-indent:-999px;
+    color: transparent;  
+    background: url(images/ico-search.png) no-repeat #4d90fe center; 
+    border: 1px solid #3079ED; 
+    -moz-border-radius: 2px; 
+    -webkit-border-radius: 2px; 
+}
+/* Style the search button hover state */
+#submit:hover {
+    background: url(images/ico-search.png) no-repeat center #357AE8; 
+    border: 1px solid #2F5BB7;
+}
+/* Clear floats */
+.fclear {clear:both}
