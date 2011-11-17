@@ -11,17 +11,26 @@
 		<script type="text/javascript" src="js/genutil.js"></script>
 
 <script>
+
+$("iframe#leftpanel").contents().find('#accordion').hide()
 $(document).ready(function() {
 
     // on click of "user", delete input field value if "enter email"
     $("#user").click(function() {
-    	if ($.trim($("#user").val()) == "enter email")
+    	if ($.trim($("#user").val()) == "enter email" || $.trim($("#user").val()) == "enter+email")
     		{
 	            $("#user").val("");
 	            $("#x").hide();
     		}
+    	if (!($.isEmptyObject($.trim($("#user").val()))))
+		{
+            $("#x").fadeIn();
+		}
+    	
     });
-	
+
+    
+    
 	// if text input field value is not empty show the "X" button
     $("#user").keyup(function() {
         $("#x").fadeIn();
@@ -29,6 +38,7 @@ $(document).ready(function() {
             $("#x").fadeOut();
         }
     });
+	
     // on click of "X", delete input field value and hide "X"
     $("#x").click(function() {
         $("#user").val("");
@@ -36,28 +46,45 @@ $(document).ready(function() {
     });
     
  // Getting URL var by its nam
-    var user = $.trim(unescape($.getUrlVar('user')));
-    $("#user").val(user);
+    var user = $.trim(unescape($.getUrlVar('user')));    
+	if ($.trim(user) == "undefined" || $.trim(user) == "" )
+	    $("#user").val("enter email")
+	else
+	{
+	    $("#user").val(unescape(user));
+	}
  	var access = $.trim(unescape($.getUrlVar('access')));
  	if (access != '' && access != 'undefined')
  	{
  	 	document.getElementById(access).click(); 		
  	}
- 	
     
     $("#centerpanel").ready(function () {
-	    var doclist = $.getJSON("js/data.js", function (data){
-			   $("iframe#centerpanel").contents().find('#tb_doclist > tbody:last').children( 'tr:not(:first)').remove()				
-			   $(data).each(function(index, element){
-    				//console.log($(this)[0].title + "/" + $(this)[0].resourceID)  		   
-					$("iframe#centerpanel").contents().find('#tb_doclist > tbody:last')
-					.append($('<tr>')
-					        .append('<td><input type=\"checkbox\" id=\"docs\"/>'+$(this)[0].title+'</td>')
-					        .append('<td>'+$(this)[0].resourceID+'</td>')					        
-					    ) 		       
-			   });
-		   	   return data;
-	   	    });        
+    	if (!($.trim($("#user").val()) == "enter email" || $.trim($("#user").val()) == "enter+email"))
+		{
+    		// Replace fileName below with the correct URL eg. "getDocs?" - user has email id, access has reader/writer/editor
+    		var fileName = "js/" + user + "-" + access + ".js" 
+		    var doclist = $.getJSON(fileName, function (data){
+				   $(data).each(function(index, element){
+	    				//console.log($(this)[0].title + "/" + $(this)[0].resourceID)  		       						   
+						$("iframe#centerpanel").contents().find('#tb_doclist > tbody:last')
+						.append($('<tr>')
+						        .append('<td><input type=\"checkbox\" id=\"docs\"/>'+$(this)[0].title+'</td>')
+						        .append('<td>'+$(this)[0].resourceID+'</td>')					        
+						    )
+					   if ($(this)[0].resourceID.split(":")[0] == 'folder'){
+						   $("iframe#leftpanel").contents().find("div#folderList")
+						   .append($('<a href=\"#\" onclick=\"onFolderClick()\">') 
+								   .append($(this)[0].title)
+							)
+						   .append($('<br>'))						   
+					   }
+						$("iframe#leftpanel").contents().find("div#folderList")[0].style.height = "325px"	    				
+				   });
+			   	   return data;
+		   	    });
+    		
+		}
 		   
 	   }); 		   
 	   
@@ -77,7 +104,7 @@ function searchclick()
 		return false;			
 	}
     var filterValue = $("input:radio[name=access]:checked").val();
-   
+ 	$("iframe#centerpanel").contents().find('#tb_doclist > tbody:last').children( 'tr:not(:first)').remove()				   
 }
 
 function onsubmit()
@@ -87,7 +114,7 @@ function onsubmit()
 	{
 		return false;			
 	}
-	//$("#search").action = "http://"
+
 }
 
 </script>
@@ -103,9 +130,8 @@ function onsubmit()
 	<input id="user" name="user" value="enter email" />
      <div id="delete" ><span id="x">x</span></div>  	
 	<input type="submit" value="submit" id="submit" onclick="searchclick()" />	<br/>
-	<input type="radio" id="any" name="access" value="any" checked />any
 	<input type="radio" id="reader" name="access" value="reader" />reader
-	<input type="radio" id="editor" name="access" value="editor" />editor
+	<input type="radio" id="writer" name="access" value="writer" checked/>writer
 	<input type="radio" id="owner" name="access" value="owner" />owner
 </fieldset>
 </td>
@@ -119,8 +145,8 @@ Results > Genentech > Double Helix
 </div>
 
 <tr>
-<td ><div class="col2" id="divleftpanel" ><iframe frameborder="0" height="450" id="leftPanel" name="leftPanel" src="left.htm" style="width:400px"></iframe></div></td>
-<td><div class="col1" id="divcenterpanel" ><iframe frameborder="0" src="right.htm" height="450" id="centerpanel" style="width:800px"></div></iframe></td>	
+<td ><div class="col2" id="divleftpanel" ><iframe frameborder="0" height="450" id="leftpanel" name="leftpanel" src="left.htm" style="width:400px"></iframe></div></td>
+<td><div class="col1" id="divcenterpanel" ><iframe frameborder="0" src="right.htm" height="450" name="centerpanel" id="centerpanel" style="width:800px"></div></iframe></td>	
 </tr>
 </table>
 </div>

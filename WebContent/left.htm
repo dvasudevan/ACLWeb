@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<title>Search Results</title>
+		<title>Collections View</title>
 		<link type="text/css" href="css/cupertino/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
 		<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
@@ -11,9 +11,8 @@
 			$(function(){
 
 				// Accordion
-				$("#accordion").accordion({ header: "h3" });
-	
-				
+				$("#accordion").accordion({ header: "h3", collapsible: true, autoHeight: true});
+
 			});
 		</script>
 		<style type="text/css">
@@ -25,19 +24,25 @@
 			ul#icons {margin: 0; padding: 0;}
 			ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
 			ul#icons span.ui-icon {float: left; margin: 0 4px;}
-		</style>	
+		</style>
+		<script>
+			function onFolderClick()
+			{
+				console.log(event.target.innerText);
+				console.log($("a#resultsHeader")[0].text);
+				$("a#resultsHeader")[0].innerText = $("a#resultsHeader")[0].text + " > " + event.target.innerText; 
+				
+			}
+		</script>
 </head>
 <body >
 		<!-- Accordion -->
-		<h2 class="demoHeaders">Filter Results</h2>
-		<div id="accordion">
+		<h2 class="demoHeaders">Collections </h2>
+		<div id="accordion" >
 			<div>
-				<h3><a href="#">Collection Name</a></h3>
-				<div>
-				First Collection<br/>
-				Second Coll > Child<br/>
-				Third Collection<br/>
-							</div>
+				<h3><a id="resultsHeader" href="#">Results </a></h3>
+				<div id="folderList" style="height: 325px">
+				</div>
 			</div>
 		</div>
 
